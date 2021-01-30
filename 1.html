@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            margin-bottom:100px;
+
+        }
+        table,td,th{
+            border:1px solid black;
+            width:40%;
+        
+        }
+
+    </style>
+</head>
+<body>
+
+  <div>
+    <h1>Kredit rumah :</h1>
+    <label for="">pilih rumah</label>
+    <input type="radio" name="rose" id="rose" value="120000000">Rose 120.000.000
+    <input type="radio" value="300000000" name="gold" id="gold">Gold 300.000.000
+    <input type="radio" name="platinum" id="platinum" value="360000000">platinum 360.000.000<br>
+    <label for="">Angsuran :</label>
+    <input type="checkbox" name="" id="" value="12">12 bulan
+    <input type="checkbox" name="" id="" value="18">18 bulan
+    <input type="checkbox" name="" id="" value="24">24 bulan<br>
+    <label for="uangMuka" >Uang muaka :</label>
+    <input type="text" name="uangMuka" plaholder="4.000.000">
+    <button type="submit" name="submit" >Send</button>
+  </div>
+
+ 
+<div class='output'>
+    <label for="rumahType">type rumah:</label>
+    <label id="rumahType"></label><br>
+
+    <label for="rumahHarga">Harga Rumah<label>
+    <label id="rumahHarga"></label><br>
+
+    <label for="um">uang Muka:</label>
+    <label id="um"></label><br>
+
+    <label for="sisa">Sisa:</label>
+    <label id="sisa"></label><br>
+
+    <label for="LK">Lama Kredit:</label>
+    <label id="LK"></label><br>
+
+    <label for="angsuran">Angsuran:</label>
+    <label id="angsuran" value="4000000">4.000.000</label><br>
+</div>
+       
+<button onclick="myfunction()">angsuran periode</button>
+    <table >
+        <thead>
+            <tr>
+                <th>Bulan ke</th>
+                <th>Angsuran</th>
+                <th>Sisa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row"></tr>
+        </tbody>
+    </table>
+<script>
+    let dp = 20 / 100;
+    let rumahType = document.querySelectorAll("[type='radio']");
+    const rumahHarga = document.getElementById('rumahHarga');
+    let angsuran = document.querySelectorAll("[type='checkbox']");
+    const uangMuka = document.querySelector("[name='uangMuka']");
+    const um = document.getElementById('um');
+    const sisa = document.getElementById('sisa');
+    const Lk = document.getElementById('LK');
+    const angsur = document.getElementById('angsuran');
+    var tbody= document.querySelector('tbody');
+    for(let i =0 ;i < rumahType.length;i++){
+        rumahType[i].addEventListener('click',function(){
+            document.getElementById('rumahType').innerText= this.name;
+            rumahHarga.innerText= this.value;
+     
+         })  
+    }
+    
+    for(let i = 0 ;i < angsuran.length; i++){
+        angsuran[i].addEventListener('click',function(){
+            LK.innerText = this.value;
+        })
+    }
+    document.querySelector("[name='submit']").addEventListener('click',function(){
+        um.innerText = uangMuka.value;
+        sisa.innerText =  parseInt(rumahHarga.innerText) - parseInt(uangMuka.value);
+    })
+
+  
+    
+  
+function myfunction(){
+   
+    var sisaAngsuran =parseInt(sisa.innerText);
+
+  
+    for(let i = 1 ; i <= parseInt(LK.innerText) ; i++){
+       let tr = document.createElement('tr');
+       tr.innerHTML = `
+       <td>${i}</td>
+        <td>${angsur.innerText}</td>
+        <td>${sisaAngsuran -= 4000000}</td>
+        `
+        tbody.appendChild(tr)
+    }
+   
+   
+}
+   
+
+
+</script>
+</body>
+</html>
